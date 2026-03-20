@@ -3,270 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE DIGITAL THR VAULT | ACCESS GRANTED</title>
+    <title>PUNTEN SAWIIITT 🌴 | ACCESS GRANTED</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --bg-color: #03001c; /* Sangat gelap */
-            --card-bg: rgba(18, 18, 35, 0.6); /* Transparan untuk glassmorphism */
-            --primary-neon: #00f2fe; /* Cyan neon */
-            --secondary-neon: #4facfe; /* Biru neon */
-            --accent-neon: #ff0055; /* Pink neon untuk kejutan */
+            --bg-color: #03001c;
+            --card-bg: rgba(18, 18, 35, 0.7);
+            --primary-neon: #00f2fe;
+            --accent-neon: #81e621;
+            --shopee-orange: #ff4500;
             --text-main: #e0e6ed;
             --font-tech: 'Orbitron', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+            background-color: var(--bg-color); color: var(--text-main);
+            font-family: var(--font-body); display: flex; justify-content: center; align-items: center;
         }
 
-        /* Latar belakang garis-garis bergerak (Grid Effect) */
         body::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
+            content: ""; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
             background-image: 
-                linear-gradient(rgba(0, 242, 254, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 254, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: gridMove 20s linear infinite;
-            z-index: -1;
+                linear-gradient(rgba(129, 230, 33, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(129, 230, 33, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px; transform: perspective(500px) rotateX(60deg);
+            animation: gridMove 30s linear infinite; z-index: -1;
         }
 
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
-        }
+        @keyframes gridMove { 100% { transform: perspective(500px) rotateX(60deg) translateY(60px); } }
 
-        /* Container Utama dengan efek Kaca */
         .thr-vault {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            border-radius: 20px;
-            padding: 40px;
-            width: 90%;
-            max-width: 450px;
-            text-align: center;
-            backdrop-filter: blur(15px); /* Efek blur kaca */
-            box-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg); border: 1px solid rgba(129, 230, 33, 0.3);
+            border-radius: 20px; padding: 30px; width: 85%; max-width: 400px;
+            text-align: center; backdrop-filter: blur(15px); box-shadow: 0 0 30px rgba(129, 230, 33, 0.1);
+            position: relative; overflow: hidden; transition: transform 0.3s ease;
         }
 
-        .thr-vault::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, var(--primary-neon), transparent 30%);
-            animation: rotateBorder 4s linear infinite;
-            z-index: -2;
-            opacity: 0.3;
-        }
-
-        @keyframes rotateBorder {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Tampilan ID Card Keren */
         .id-card {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--primary-neon);
+            background: rgba(0, 0, 0, 0.5); border-radius: 12px; padding: 15px; margin-bottom: 25px;
+            border-left: 4px solid var(--accent-neon);
         }
 
-        .system-status {
-            font-family: var(--font-tech);
-            color: var(--primary-neon);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0;
-            margin-bottom: 10px;
-        }
+        .system-status { font-family: var(--font-tech); color: var(--accent-neon); font-size: 0.7rem; letter-spacing: 2px; margin: 0 0 5px 0; }
+        .target-name { font-family: var(--font-tech); font-weight: 700; font-size: 1.6rem; color: #fff; margin: 0; text-shadow: 0 0 10px var(--accent-neon); }
+        .target-subtext { font-size: 0.8rem; color: #a0b0c0; margin: 5px 0 0 0; }
 
-        .target-name {
-            font-family: var(--font-tech);
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: #fff;
-            margin: 0;
-            text-shadow: 0 0 10px var(--primary-neon);
-            letter-spacing: 1px;
+        .input-group { margin: 25px 0; text-align: left; }
+        .input-group label { display: block; font-size: 0.8rem; color: var(--accent-neon); margin-bottom: 8px; font-family: var(--font-tech); letter-spacing: 1px;}
+        .input-field {
+            width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid #334155;
+            padding: 12px; border-radius: 8px; color: white; font-size: 1.1rem;
+            outline: none; transition: 0.3s; box-sizing: border-box; font-family: 'Courier New', monospace;
         }
+        .input-field:focus { border-color: var(--accent-neon); box-shadow: 0 0 10px rgba(129, 230, 33, 0.2); }
 
-        .sub-text {
-            font-size: 0.9rem;
-            color: #a0b0c0;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
-
-        /* Tombol Utama yang menyala */
         .btn-claim {
-            font-family: var(--font-tech);
-            background: transparent;
-            border: 2px solid var(--primary-neon);
-            color: var(--primary-neon);
-            padding: 15px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
+            width: 100%; font-family: var(--font-tech); background: transparent;
+            border: 2px solid var(--accent-neon); color: var(--accent-neon);
+            padding: 15px; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.3s;
             letter-spacing: 2px;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
         }
+        .btn-claim:hover { background: var(--accent-neon); color: var(--bg-color); box-shadow: 0 0 25px var(--accent-neon); }
 
-        .btn-claim:hover {
-            background: var(--primary-neon);
-            color: var(--bg-color);
-            box-shadow: 0 0 30px var(--primary-neon);
+        #loading-overlay { display: none; margin-top: 20px; }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1); border-left-color: var(--accent-neon);
+            border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto 10px;
         }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Pesan setelah diklik */
-        #result {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        .shopee-text {
-            color: #ff4500; /* Warna Shopee */
-            font-weight: bold;
-        }
-
-        .amount {
-            font-family: var(--font-tech);
-            font-size: 2.2rem;
-            color: #fff;
-            text-shadow: 0 0 15px var(--accent-neon);
-            margin: 15px 0;
-        }
+        #result { display: none; }
+        .success-text { color: var(--accent-neon); font-weight: bold; }
+        .amount { font-family: var(--font-tech); font-size: 2.2rem; color: #fff; text-shadow: 0 0 15px #ffffff; margin: 15px 0; }
+        .number-spay { color: var(--primary-neon); font-family: 'Courier New', monospace; font-size: 1rem; }
         
-        .btn-redirect {
-            background: #ff4500; /* Warna Shopee */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: bold;
+        #friend-photo {
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--accent-neon); box-shadow: 0 0 20px rgba(129, 230, 33, 0.4);
+            margin: 0 auto 15px; display: block;
         }
 
+        .sawit-icon { font-size: 1.2rem; margin: 0 5px; vertical-align: middle;}
     </style>
 </head>
 <body>
 
 <div class="thr-vault" id="mainVault">
-    <div id="initialState">
+    <div id="setup-view">
         <div class="id-card">
-            <p class="system-status">>> INITIALIZING ACCESS</p>
+            <p class="system-status">>> SYSTEM ACCESS 🌴</p>
             <h1 class="target-name" id="display-name">LOADING...</h1>
+            <p class="target-subtext">>> SECURE VAULT ACCESS [PAPI_MODE]</p>
         </div>
-        <p class="sub-text">Sistem mendeteksi kiriman dana khusus. Verifikasi diperlukan.</p>
-        <button class="btn-claim" onclick="claimProcess()">UNLOCK DANA THR</button>
+        
+        <div class="input-group">
+            <label>MASUKKAN NOMOR SHOPEEPAY <span class="sawit-icon">🌴</span></label>
+            <input type="number" id="spay-number" class="input-field" placeholder="08xxxxxxxxxx">
+        </div>
+
+        <button class="btn-claim" onclick="processTransfer()">VERIFIKASI & KLAIM</button>
+
+        <div id="loading-overlay">
+            <div class="spinner"></div>
+            <p style="font-size: 0.8rem; font-family: var(--font-tech);">PROCESSING TRANSACTION...</p>
+        </div>
     </div>
 
     <div id="result">
-        <div class="id-card">
-            <p class="system-status" style="color: var(--accent-neon);">>> TRANSFER GRANTED</p>
-            <h1 class="target-name">BERHASIL!</h1>
+        <div class="id-card" style="border-color: #ffffff; text-shadow: 0 0 10px #ffffff;">
+            <p class="system-status" style="color: #ffffff;">>> STATUS: GRANTED</p>
+            <h1 class="target-name" style="color: #ffffff;">BERHASIL! <span class="sawit-icon">🌴</span></h1>
         </div>
-        <p class="sub-text">Dana telah dialokasikan untuk <span id="final-name"></span></p>
+
+        <img src="" alt="FOTO SOBBAT" id="friend-photo">
+
+        <p style="font-size: 0.9rem;">Dana <span class="sawit-icon">🌴</span> siap dialokasikan ke nomor:</p>
+        <p class="number-spay" id="final-number">08123456789</p>
+        
         <div class="amount" id="display-amount">Rp 0</div>
-        <p class="sub-text">Silakan klik tombol di bawah untuk membuka aplikasi <span class="shopee-text">Shopee</span> dan cek saldo/notifikasi kamu.</p>
-        <a href="https://shopee.co.id/m/shopeepay" class="btn-redirect" target="_blank">BUKA SHOPEEPAY</a>
+        
+        <p style="font-size: 0.8rem; color: #a0b0c0;">Cek saldo/notifikasi di aplikasi ShopeePay kamu, <span id="final-name" class="success-text"></span>!</p>
+        
+        <button class="btn-claim" style="margin-top:15px; border-color: var(--shopee-orange); color: var(--shopee-orange);" onclick="window.location.href='https://shopee.co.id/m/shopeepay'">BUKA SHOPEEPAY</button>
     </div>
 </div>
 
 <script>
-    // Ambil Data dari URL (Sama kayak logic sebelumnya)
     const urlParams = new URLSearchParams(window.location.search);
     const namaTeman = urlParams.get('nama') || "SOBBAT";
     const nominal = urlParams.get('amount') || "0";
 
-    // Set Nama di Awal
     document.getElementById('display-name').innerText = namaTeman.toUpperCase();
 
-    function claimProcess() {
-        // 1. Efek Suara (Optional, kalo mau tambah keren harus host file suara)
-        // new Audio('click.mp3').play();
-
-        // 2. Ganti Tampilan dengan Animasi
-        document.getElementById('initialState').style.display = 'none';
-        
-        const resultDiv = document.getElementById('result');
-        resultDiv.style.display = 'block';
-        setTimeout(() => resultDiv.style.opacity = '1', 50);
-
-        // 3. Set Nama Final dan Nominal (Format Rupiah)
-        document.getElementById('final-name').innerText = namaTeman;
-        document.getElementById('display-amount').innerText = "Rp" + parseInt(nominal).toLocaleString('id-ID');
-
-        // 4. Selebrasi Confetti (Warna disesuaikan tema)
-        var count = 200;
-        var defaults = {
-          origin: { y: 0.7 }
-        };
-
-        function fire(particleRatio, opts) {
-          confetti(Object.assign({}, defaults, opts, {
-            particleCount: Math.floor(count * particleRatio)
-          }));
+    function processTransfer() {
+        const phone = document.getElementById('spay-number').value;
+        if (phone.length < 10) {
+            alert("Masukkan nomor ShopeePay yang valid, Sob!");
+            return;
         }
 
-        fire(0.25, {
-          spread: 26,
-          startVelocity: 55,
-          colors: ['#00f2fe', '#4facfe', '#ffffff']
-        });
-        fire(0.2, {
-          spread: 60,
-          colors: ['#00f2fe', '#ff0055']
-        });
-        fire(0.35, {
-          spread: 100,
-          decay: 0.91,
-          scalar: 0.8
-        });
-        fire(0.1, {
-          spread: 120,
-          startVelocity: 25,
-          decay: 0.92,
-          scalar: 1.2
-        });
-        fire(0.1, {
-          spread: 120,
-          startVelocity: 45,
-          colors: ['#ff0055', '#ffffff']
-        });
+        document.querySelector('.btn-claim').style.display = 'none';
+        document.getElementById('loading-overlay').style.display = 'block';
+
+        // BAGIAN INI SUDAH DIUBAH KE .jpeg SESUAI FOTO KAMU
+        const photoFileName = namaTeman.toLowerCase() + ".jpeg";
+        document.getElementById('friend-photo').src = photoFileName;
+
+        setTimeout(() => {
+            document.getElementById('setup-view').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            
+            document.getElementById('final-name').innerText = namaTeman;
+            document.getElementById('final-number').innerText = phone;
+            document.getElementById('display-amount').innerText = "Rp" + parseInt(nominal).toLocaleString('id-ID');
+            
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#81e621', '#ffffff', '#e0e6ed']
+            });
+        }, 3000); 
     }
 </script>
 
