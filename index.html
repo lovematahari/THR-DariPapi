@@ -10,7 +10,7 @@
         :root {
             --bg-color: #03001c;
             --card-bg: rgba(18, 18, 35, 0.85);
-            --accent-neon: #81e621; /* Hijau Sawit Neon */
+            --accent-neon: #81e621;
             --shopee-orange: #ff4500;
             --text-main: #e0e6ed;
             --font-tech: 'Orbitron', sans-serif;
@@ -22,7 +22,6 @@
             font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center;
         }
 
-        /* Latar Belakang Grid Bergerak */
         body::before {
             content: ""; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
             background-image: linear-gradient(rgba(129, 230, 33, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(129, 230, 33, 0.1) 1px, transparent 1px);
@@ -48,16 +47,14 @@
         .input-field {
             width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid #444;
             padding: 15px; border-radius: 10px; color: white; font-size: 1.1rem;
-            margin: 20px 0; box-sizing: border-box; outline: none; transition: 0.3s;
+            margin: 20px 0; box-sizing: border-box; outline: none;
         }
-        .input-field:focus { border-color: var(--accent-neon); box-shadow: 0 0 15px rgba(129, 230, 33, 0.3); }
 
         .btn-claim {
             width: 100%; font-family: var(--font-tech); background: transparent;
             border: 2px solid var(--accent-neon); color: var(--accent-neon);
-            padding: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; letter-spacing: 1px;
+            padding: 18px; font-weight: bold; cursor: pointer; transition: 0.4s;
         }
-        .btn-claim:hover { background: var(--accent-neon); color: #000; box-shadow: 0 0 30px var(--accent-neon); }
 
         #friend-photo {
             width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
@@ -65,58 +62,56 @@
             box-shadow: 0 0 20px var(--accent-neon);
         }
 
-        .amount { font-family: var(--font-tech); font-size: 2.5rem; margin: 15px 0; color: #fff; text-shadow: 0 0 10px #fff; }
+        .amount { font-family: var(--font-tech); font-size: 2.5rem; margin: 15px 0; color: #fff; }
         
         #wa-btn {
             background: #25d366; color: white; border: none; padding: 18px;
             width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; display: none; 
-            margin-top: 20px; font-family: var(--font-tech); font-size: 0.9rem;
+            margin-top: 20px; font-family: var(--font-tech);
         }
     </style>
 </head>
 <body>
 
 <div class="thr-vault">
-    <!-- TAMPILAN AWAL -->
     <div id="setup-view">
         <div class="id-card">
-            <p style="font-size: 0.8rem; color: var(--accent-neon); margin:0; font-family: var(--font-tech);">>> PUNTEN SAWIIITT 🌴</p>
-            <h1 class="target-name" id="display-name">INITIALIZING...</h1>
+            <p style="font-size: 0.8rem; color: var(--accent-neon); margin:0;">>> PUNTEN SAWIIITT 🌴</p>
+            <h1 class="target-name" id="display-name">Process...</h1>
         </div>
-        <p style="font-size: 0.9rem;">Masukkan nomor ShopeePay kamu:</p>
+        <p>Nomor ShopeePay:</p>
         <input type="number" id="spay-number" class="input-field" placeholder="08xxxxxxxxxx">
-        <button class="btn-claim" onclick="processTransfer()">KLAIM THR DARI PAPI</button>
-        <p id="loading-txt" style="display:none; font-family: var(--font-tech); font-size: 0.8rem; margin-top: 20px; color: var(--accent-neon);">PROCESSING VAULT...</p>
+        <button class="btn-claim" onclick="processTransfer()">KLAIM THR </button>
     </div>
 
-    <!-- TAMPILAN BERHASIL -->
     <div id="result" style="display:none;">
-        <h2 style="color: var(--accent-neon); font-family: var(--font-tech); margin-bottom:0;">ACCESS GRANTED! 🌴</h2>
+        <h2 style="color: var(--accent-neon); font-family: var(--font-tech);">Berhasill! 🌴</h2>
         <img src="" id="friend-photo">
         <div class="amount" id="display-amount"></div>
-        <p style="font-size: 0.9rem;">Selamat Lebaran! THR siap dikirim ke:<br><b id="final-num" style="color:var(--accent-neon); font-size: 1.1rem;"></b></p>
-        <button id="wa-btn" onclick="sendWA()">📲 KIRIM CHAT CLAIM</button>
+        <p>THR siap dikirim ke:<br><b id="final-num" style="color:var(--accent-neon)"></b></p>
+        <button id="wa-btn" onclick="sendWA()">📲 KIRIM Chat Klaim Untuk Process</button>
     </div>
 </div>
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const namaTeman = urlParams.get('nama') || "KM GEY KAN";
-    const nominal = urlParams.get('amount') || "50k";
-    const myWA = "6287768314233"; // Nomor WA Papi
+    const namaTeman = urlParams.get('nama') || "KM GEYY KAN JUJUR";
+    const nominal = urlParams.get('amount') || "0";
+    const myWA = "6287768314233";
 
     document.getElementById('display-name').innerText = namaTeman.toUpperCase();
 
     function processTransfer() {
         const phone = document.getElementById('spay-number').value;
-        if (phone.length < 10) { alert("Masukkan nomor yang bener dong, Sob!"); return; }
+        if (phone.length < 10) { alert("Nomor salah!"); return; }
 
-        document.getElementById('loading-txt').style.display = 'block';
-        document.querySelector('.btn-claim').style.display = 'none';
+        document.querySelector('.btn-claim').innerText = "PROCESSING...";
 
-        // Logika ambil foto .jpeg dari GitHub kamu
+        // PAKSA AMBIL FILE .jpeg (SESUAI GAMBAR GITHUB KAMU)
         const photoImg = document.getElementById('friend-photo');
-        photoImg.src = namaTeman.toLowerCase() + ".jpeg"; 
+        // Kita paksa jadi huruf kecil semua filenya
+        const namaFile = namaTeman.toLowerCase().trim();
+        photoImg.src = namaFile + ".jpeg"; 
         
         setTimeout(() => {
             document.getElementById('setup-view').style.display = 'none';
@@ -126,19 +121,13 @@
             document.getElementById('final-num').innerText = phone;
             document.getElementById('wa-btn').style.display = 'block';
             
-            // Efek Confetti Sawit
-            confetti({ 
-                particleCount: 200, 
-                spread: 80, 
-                origin: { y: 0.6 }, 
-                colors: ['#81e621', '#ffffff', '#25d366'] 
-            });
-        }, 2500);
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#81e621', '#ffffff'] });
+        }, 2000);
     }
 
     function sendWA() {
         const phone = document.getElementById('spay-number').value;
-        const msg = `Papi, aku ${namaTeman} sudah klaim THR Rp${parseInt(nominal).toLocaleString('id-ID')} ke ShopeePay ${phone}. Segera di-TF ya Papi sayang! 🌴`;
+        const msg = Hai Aku ${namaTeman} sudah klaim  Rp${parseInt(nominal).toLocaleString('id-ID')} ke ShopeePay ${phone}. 🌴`;
         window.open(`https://wa.me/${myWA}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 </script>
