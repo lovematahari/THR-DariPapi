@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUNTEN SAWIIITT 🌴 | KLAIM THR </title>
+    <title>PUNTEN SAWIIITT 🌴 | KLAIM  </title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
@@ -11,64 +11,20 @@
             --bg-color: #03001c;
             --card-bg: rgba(18, 18, 35, 0.85);
             --accent-neon: #81e621;
-            --shopee-orange: #ff4500;
             --text-main: #e0e6ed;
             --font-tech: 'Orbitron', sans-serif;
         }
-
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
-            background-color: var(--bg-color); color: var(--text-main);
-            font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center;
-        }
-
-        body::before {
-            content: ""; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
-            background-image: linear-gradient(rgba(129, 230, 33, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(129, 230, 33, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px; transform: perspective(500px) rotateX(60deg);
-            animation: gridMove 25s linear infinite; z-index: -1;
-        }
-
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: var(--bg-color); color: var(--text-main); font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; }
+        body::before { content: ""; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(129, 230, 33, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(129, 230, 33, 0.1) 1px, transparent 1px); background-size: 50px 50px; transform: perspective(500px) rotateX(60deg); animation: gridMove 25s linear infinite; z-index: -1; }
         @keyframes gridMove { 100% { transform: perspective(500px) rotateX(60deg) translateY(50px); } }
-
-        .thr-vault {
-            background: var(--card-bg); border: 2px solid var(--accent-neon);
-            border-radius: 24px; padding: 30px; width: 90%; max-width: 420px;
-            text-align: center; backdrop-filter: blur(20px); box-shadow: 0 0 40px rgba(129, 230, 33, 0.2);
-        }
-
-        .id-card {
-            background: rgba(0, 0, 0, 0.6); border-radius: 15px; padding: 20px; margin-bottom: 20px;
-            border-left: 5px solid var(--accent-neon);
-        }
-
+        .thr-vault { background: var(--card-bg); border: 2px solid var(--accent-neon); border-radius: 24px; padding: 30px; width: 90%; max-width: 420px; text-align: center; backdrop-filter: blur(20px); box-shadow: 0 0 40px rgba(129, 230, 33, 0.2); }
+        .id-card { background: rgba(0, 0, 0, 0.6); border-radius: 15px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--accent-neon); }
         .target-name { font-family: var(--font-tech); font-weight: 700; font-size: 1.8rem; text-shadow: 0 0 15px var(--accent-neon); margin: 0; letter-spacing: 2px; }
-
-        .input-field {
-            width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid #444;
-            padding: 15px; border-radius: 10px; color: white; font-size: 1.1rem;
-            margin: 20px 0; box-sizing: border-box; outline: none;
-        }
-
-        .btn-claim {
-            width: 100%; font-family: var(--font-tech); background: transparent;
-            border: 2px solid var(--accent-neon); color: var(--accent-neon);
-            padding: 18px; font-weight: bold; cursor: pointer; transition: 0.4s;
-        }
-
-        #friend-photo {
-            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
-            border: 4px solid var(--accent-neon); margin: 20px auto; display: none;
-            box-shadow: 0 0 20px var(--accent-neon);
-        }
-
+        .input-field { width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid #444; padding: 15px; border-radius: 10px; color: white; font-size: 1.1rem; margin: 20px 0; box-sizing: border-box; outline: none; }
+        .btn-claim { width: 100%; font-family: var(--font-tech); background: transparent; border: 2px solid var(--accent-neon); color: var(--accent-neon); padding: 18px; font-weight: bold; cursor: pointer; transition: 0.4s; }
+        #friend-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-neon); margin: 20px auto; display: none; box-shadow: 0 0 20px var(--accent-neon); }
         .amount { font-family: var(--font-tech); font-size: 2.5rem; margin: 15px 0; color: #fff; }
-        
-        #wa-btn {
-            background: #25d366; color: white; border: none; padding: 18px;
-            width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; display: none; 
-            margin-top: 20px; font-family: var(--font-tech);
-        }
+        #wa-btn { background: #25d366; color: white; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; display: none; margin-top: 20px; font-family: var(--font-tech); }
     </style>
 </head>
 <body>
@@ -77,13 +33,24 @@
     <div id="setup-view">
         <div class="id-card">
             <p style="font-size: 0.8rem; color: var(--accent-neon); margin:0;">>> PUNTEN SAWIIITT 🌴</p>
-            <h1 class="target-name" id="display-name">Isi nomor dulu cptt</h1>
+            <h1 class="target-name" id="display-name">Process...</h1>
         </div>
         <p>Nomor ShopeePay:</p>
         <input type="number" id="spay-number" class="input-field" placeholder="08xxxxxxxxxx">
-        <button class="btn-claim" onclick="processTransfer()">KLAIM THR </button>
+        <button id="main-claim-btn" class="btn-claim" onclick="processTransfer()">KLAIM </button>
     </div>
 
     <div id="result" style="display:none;">
-        <h2 style="color: var(--accent-neon); font-family: var(--font-tech);">Berhasill! 🌴</h2>
-        <img src="" id="friend-
+        <h2 style="color: var(--accent-neon); font-family: var(--font-tech);">Berhasil! 🌴</h2>
+        <img src="" id="friend-photo">
+        <div class="amount" id="display-amount"></div>
+        <p>THR siap dikirim ke:<br><b id="final-num" style="color:var(--accent-neon)"></b></p>
+        <button id="wa-btn" onclick="sendWA()">📲 Kirim Chat Klaim </button>
+    </div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaTeman = urlParams.get('nama') || "SOBBAT";
+    const nominal = urlParams.get('amount') || "0";
+    const myWA = "6287768314233";
