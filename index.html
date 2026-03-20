@@ -77,7 +77,7 @@
     <div id="setup-view">
         <div class="id-card">
             <p style="font-size: 0.8rem; color: var(--accent-neon); margin:0;">>> PUNTEN SAWIIITT 🌴</p>
-            <h1 class="target-name" id="display-name">Process...</h1>
+            <h1 class="target-name" id="display-name">Isi nomor dulu cptt</h1>
         </div>
         <p>Nomor ShopeePay:</p>
         <input type="number" id="spay-number" class="input-field" placeholder="08xxxxxxxxxx">
@@ -86,50 +86,4 @@
 
     <div id="result" style="display:none;">
         <h2 style="color: var(--accent-neon); font-family: var(--font-tech);">Berhasill! 🌴</h2>
-        <img src="" id="friend-photo">
-        <div class="amount" id="display-amount"></div>
-        <p>THR siap dikirim ke:<br><b id="final-num" style="color:var(--accent-neon)"></b></p>
-        <button id="wa-btn" onclick="sendWA()">📲 KIRIM Chat Klaim Untuk Process</button>
-    </div>
-</div>
-
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const namaTeman = urlParams.get('nama') || "KM GEYY KAN JUJUR";
-    const nominal = urlParams.get('amount') || "0";
-    const myWA = "6287768314233";
-
-    document.getElementById('display-name').innerText = namaTeman.toUpperCase();
-
-    function processTransfer() {
-        const phone = document.getElementById('spay-number').value;
-        if (phone.length < 10) { alert("Nomor salah!"); return; }
-
-        document.querySelector('.btn-claim').innerText = "PROCESSING...";
-
-        // PAKSA AMBIL FILE .jpeg (SESUAI GAMBAR GITHUB KAMU)
-        const photoImg = document.getElementById('friend-photo');
-        // Kita paksa jadi huruf kecil semua filenya
-        const namaFile = namaTeman.toLowerCase().trim();
-        photoImg.src = namaFile + ".jpeg"; 
-        
-        setTimeout(() => {
-            document.getElementById('setup-view').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-            photoImg.style.display = 'block';
-            document.getElementById('display-amount').innerText = "Rp" + parseInt(nominal).toLocaleString('id-ID');
-            document.getElementById('final-num').innerText = phone;
-            document.getElementById('wa-btn').style.display = 'block';
-            
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#81e621', '#ffffff'] });
-        }, 2000);
-    }
-
-    function sendWA() {
-        const phone = document.getElementById('spay-number').value;
-        const msg = Hai Aku ${namaTeman} sudah klaim  Rp${parseInt(nominal).toLocaleString('id-ID')} ke ShopeePay ${phone}. 🌴`;
-        window.open(`https://wa.me/${myWA}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-</script>
-</body>
-</html>
+        <img src="" id="friend-
