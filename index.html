@@ -3,155 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punten SAwIIITT | Spesial kayak martabak</title>
+    <title>RAHASIA SAWITTTT</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root {
             --bg-color: #000000;
             --ticket-bg: #fff;
-            --text-dark: #222;
-            --gold-accent: #bf9b30; /* Emas Klasik */
-            --wa-green: #25d366;
+            --gold-accent: #bf9b30;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
         }
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
-            background-color: var(--bg-color); color: var(--text-dark);
+            background-color: var(--bg-color); color: #222;
             font-family: var(--font-body); display: flex; justify-content: center; align-items: center;
         }
 
-        /* Latar Belakang Bokeh Emas */
+        /* Latar Belakang Bokeh */
         body::before {
             content: ""; position: absolute; width: 100%; height: 100%;
-            background-image: radial-gradient(circle at 50% 50%, rgba(191, 155, 48, 0.15) 0%, transparent 80%);
+            background-image: radial-gradient(circle at 50% 50%, rgba(191, 155, 48, 0.1) 0%, transparent 80%);
             z-index: -1;
         }
 
-        /* Container Tiket Utama */
+        /* --- Tampilan Input Kode (GATE) --- */
+        #gate-view {
+            background: rgba(20, 20, 20, 0.9); border: 1px solid var(--gold-accent);
+            border-radius: 20px; padding: 40px 30px; width: 85%; max-width: 350px;
+            text-align: center; color: white; backdrop-filter: blur(10px);
+        }
+
+        .gate-title { font-family: var(--font-heading); color: var(--gold-accent); font-size: 1.5rem; margin-bottom: 20px; }
+        .input-code {
+            width: 100%; background: transparent; border: none; border-bottom: 2px solid var(--gold-accent);
+            color: white; font-size: 1.2rem; text-align: center; outline: none; padding: 10px 0; margin-bottom: 30px;
+        }
+        .btn-open {
+            background: var(--gold-accent); color: white; border: none; padding: 15px 30px;
+            border-radius: 50px; font-weight: bold; cursor: pointer; text-transform: uppercase; width: 100%;
+        }
+
+        /* --- Tampilan Tiket (HASIL) --- */
+        #ticket-view { display: none; }
         .ticket-container {
-            background: var(--ticket-bg); border-radius: 20px;
-            width: 85%; max-width: 380px; text-align: center;
-            box-shadow: 0 15px 50px rgba(191, 155, 48, 0.2);
-            position: relative; overflow: hidden;
-            transition: transform 0.3s ease;
+            background: var(--ticket-bg); border-radius: 20px; width: 85%; max-width: 380px;
+            text-align: center; box-shadow: 0 15px 50px rgba(191, 155, 48, 0.3);
+            position: relative; overflow: hidden; animation: slideUp 0.8s ease;
         }
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* Bagian Atas Tiket */
-        .ticket-header {
-            background-color: var(--gold-accent); color: #fff;
-            padding: 20px; position: relative;
-        }
-
-        .ticket-header h1 {
-            font-family: var(--font-heading); font-size: 1.8rem;
-            margin: 0; letter-spacing: 1px;
-        }
-
-        /* Efek Bolongan Tiket (Khas Tiket Konser) */
-        .ticket-header::after {
-            content: ''; position: absolute; bottom: -15px; left: -15px;
-            width: 30px; height: 30px; background-color: var(--bg-color);
-            border-radius: 50%;
-        }
-
-        .ticket-header::before {
-            content: ''; position: absolute; bottom: -15px; right: -15px;
-            width: 30px; height: 30px; background-color: var(--bg-color);
-            border-radius: 50%;
-        }
-
-        /* Bagian Isi Tiket */
+        .ticket-header { background-color: var(--gold-accent); color: #fff; padding: 20px; }
+        .ticket-header h1 { font-family: var(--font-heading); font-size: 1.6rem; margin: 0; }
         .ticket-body { padding: 30px; }
-
-        /* Foto Bulat Teman */
         #friend-photo {
-            width: 130px; height: 130px; border-radius: 50%; object-fit: cover;
-            border: 5px solid #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 0 auto 20px; display: block;
+            width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+            border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 0 auto 20px; display: block;
         }
-
-        .personal-msg { font-size: 1rem; color: #555; margin-bottom: 5px; }
-        .friend-name { font-weight: 700; font-size: 1.5rem; color: var(--gold-accent); margin-bottom: 25px; }
-
-        .amount {
-            font-family: var(--font-heading); font-size: 2.8rem;
-            color: var(--text-dark); margin: 15px 0 5px;
-            border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc;
-            padding: 10px 0;
-        }
-
-        .sub-text { font-size: 0.8rem; color: #888; margin-bottom: 30px; }
-
-        /* Tombol WhatsApp (Anti-Macet) */
+        .friend-name { font-weight: 700; font-size: 1.4rem; color: var(--gold-accent); margin: 0; }
+        .amount { font-family: var(--font-heading); font-size: 2.5rem; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; padding: 10px 0; margin: 20px 0; }
         .btn-wa {
-            background: var(--wa-green); color: white; border: none;
-            width: 100%; padding: 18px; border-radius: 10px;
-            font-weight: bold; font-size: 1rem; text-transform: uppercase;
-            cursor: pointer; text-decoration: none; display: block;
-            box-sizing: border-box; transition: 0.3s;
+            background: #25d366; color: white; border: none; width: 100%; padding: 18px;
+            border-radius: 10px; font-weight: bold; text-decoration: none; display: block; box-sizing: border-box;
         }
-
-        .btn-wa:hover { background: #1ebd5e; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
-
     </style>
 </head>
 <body>
 
-<div class="ticket-container" id="mainTicket">
-    <div class="ticket-header">
-        <h1>TIKET GEY</h1>
-    </div>
+<!-- VIEW 1: GATEKEEPER -->
+<div id="gate-view">
+    <div class="gate-title">RESTRICTED ACCESS</div>
+    <p style="font-size: 0.9rem; margin-bottom: 25px;">ISI NAMA PANGGILAN:</p>
+    <input type="text" id="input-access" class="input-code" placeholder="Siapa namamu?" autocomplete="off">
+    <button class="btn-open" onclick="checkAccess()">BUKA RAHASIA SAWITT 🗝️</button>
+</div>
 
-    <div class="ticket-body">
-        <img src="" alt="FOTO SOBBAT" id="friend-photo">
-
-        <p class="personal-msg">Met Lebaran!</p>
-        <p class="friend-name" id="display-name">Geyy</p>
-        
-        <p class="personal-msg">Papi Kirimin Dana Khusus:</p>
-        <div class="amount" id="display-amount">Rp adadeh</div>
-        <p class="sub-text">KLIK KIRIM CLAIM.</p>
-        
-        <a href="" id="wa-link" class="btn-wa">BUKA CHAT KLAIM 📲</a>
+<!-- VIEW 2: TICKET RESULT -->
+<div id="ticket-view">
+    <div class="ticket-container">
+        <div class="ticket-header"><h1>KM GEYYY KAN ZUZURR</h1></div>
+        <div class="ticket-body">
+            <img src="" id="friend-photo">
+            <p style="font-size: 0.9rem; color: #666; margin:0;">Selamat Lebaran,</p>
+            <p class="friend-name" id="display-name"></p>
+            <div class="amount" id="display-amount"></div>
+            <a href="" id="wa-link" class="btn-wa">KIRIM BUKTI KE PAPI 📲</a>
+        </div>
     </div>
 </div>
 
 <script>
-    // Ambil Data dari URL (Nama & Nominal)
     const urlParams = new URLSearchParams(window.location.search);
-    const namaTeman = urlParams.get('nama') || "SOBBAT";
+    const namaTarget = urlParams.get('nama') || "";
     const nominal = urlParams.get('amount') || "0";
-    const myWA = "6287768314233"; // Nomor WA Papi
+    const myWA = "6287768314233";
 
-    // --- LOGIKA MENAMPILKAN DATA (BARU & STABIL) ---
-    // 1. Tampilkan Nama
-    document.getElementById('display-name').innerText = namaTeman.toUpperCase();
-    
-    // 2. Tampilkan Nominal (Format Rupiah)
-    document.getElementById('display-amount').innerText = "Rp" + parseInt(nominal).toLocaleString('id-ID');
+    function checkAccess() {
+        const inputVal = document.getElementById('input-access').value.trim().toLowerCase();
+        const namaBener = namaTarget.toLowerCase().trim();
 
-    // 3. Logika AMBIL FOTO (Anti-Eror)
-    // Kita paksa jadi huruf kecil semua, misal: ajet.jpeg, bintang.jpeg
-    const photoImg = document.getElementById('friend-photo');
-    photoImg.src = namaTeman.toLowerCase().trim() + ".jpeg"; 
+        // Validasi: Harus sama dengan nama di URL
+        if (inputVal === namaBener && namaBener !== "") {
+            unlockTicket();
+        } else {
+            alert("Salah anjay.");
+        }
+    }
 
-    // --- SELEBRASI CONFETTI (WARNA EMAS & PUTIH) ---
-    confetti({
-        particleCount: 180,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#bf9b30', '#ffffff', '#e0e6ed']
-    });
+    function unlockTicket() {
+        document.getElementById('gate-view').style.display = 'none';
+        document.getElementById('ticket-view').style.display = 'flex';
+        
+        // Isi Data
+        document.getElementById('display-name').innerText = namaTarget.toUpperCase();
+        document.getElementById('display-amount').innerText = "Rp" + parseInt(nominal).toLocaleString('id-ID');
+        
+        // Pasang Foto .jpeg kamu
+        const photoImg = document.getElementById('friend-photo');
+        photoImg.src = namaTarget.toLowerCase() + ".jpeg";
 
-    // 4. Logika TOMBOL WHATSAPP (Anti-Macet)
-    // Kita buat link-nya langsung siap saat halaman terbuka, jadi GAK BISA GAGAL DIKLIK.
-    const msg = `Papi sayang! ✨ Aku ${namaTeman} sudah klaim Digital Golden Ticket Rp${parseInt(nominal).toLocaleString('id-ID')}. Tolong di-TF ke ShopeePay aku ya Pi! 🙏`;
-    const waLink = `https://wa.me/${myWA}?text=${encodeURIComponent(msg)}`;
-    document.getElementById('wa-link').href = waLink;
+        // Pasang Link WA
+        const msg = `Hai Aku ${namaTarget} Sudah Klik Rp${parseInt(nominal).toLocaleString('id-ID')}. Claim Now`;
+        document.getElementById('wa-link').href = `https://wa.me/${myWA}?text=${encodeURIComponent(msg)}`;
+
+        // Confetti Emas
+        confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 }, colors: ['#bf9b30', '#ffffff'] });
+    }
 </script>
-
 </body>
 </html>
